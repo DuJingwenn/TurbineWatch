@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 
 #include <QApplication>
-#include <QtCharts/QLineSeries>
+#include <QtCharts/QLegend>
 
 int main(int argc, char *argv[])
 {
