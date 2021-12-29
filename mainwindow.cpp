@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::realtimeDataPlot_1(QCustomPlot *customPlot)
 {
+
     customPlot->addGraph(); // blue line
     customPlot->graph(0)->setPen(QPen(QColor(40, 110, 255)));
     customPlot->addGraph(); // red line
@@ -32,6 +33,10 @@ void MainWindow::realtimeDataPlot_1(QCustomPlot *customPlot)
     customPlot->xAxis->setTicker(timeTicker);
     customPlot->axisRect()->setupFullAxesBox();
     customPlot->yAxis->setRange(-1.2, 1.2);
+
+    customPlot->xAxis->setLabel("时间(Time/s)");
+    customPlot->yAxis->setLabel("转速(RPM)");
+    //customPlot->legend->setVisible(true);
 
     // make left and bottom axes transfer their ranges to right and top axes:
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
@@ -50,8 +55,12 @@ void MainWindow::realtimeDataPlot_2(QCustomPlot *customPlot)
     customPlot->addGraph(); // red line
     customPlot->graph(1)->setPen(QPen(QColor(255, 110, 40)));
 
+    customPlot->xAxis->setLabel("时间(Time/s)");
+    customPlot->yAxis->setLabel("输出功率(KW)");
+    //customPlot->legend->setVisible(true);
+
     QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-    timeTicker->setTimeFormat("%h:%m:%s");
+    timeTicker->setTimeFormat("%s");
     customPlot->xAxis->setTicker(timeTicker);
     customPlot->axisRect()->setupFullAxesBox();
     customPlot->yAxis->setRange(-1.2, 1.2);
@@ -73,8 +82,12 @@ void MainWindow::realtimeDataPlot_3(QCustomPlot *customPlot)
     customPlot->addGraph(); // red line
     customPlot->graph(1)->setPen(QPen(QColor(255, 110, 40)));
 
+    customPlot->xAxis->setLabel("时间(Time/s)");
+    customPlot->yAxis->setLabel("燃料质量流量(kg/s)");
+    //customPlot->legend->setVisible(true);
+
     QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-    timeTicker->setTimeFormat("%h:%m:%s");
+    timeTicker->setTimeFormat("%s");
     customPlot->xAxis->setTicker(timeTicker);
     customPlot->axisRect()->setupFullAxesBox();
     customPlot->yAxis->setRange(-1.2, 1.2);
@@ -96,8 +109,12 @@ void MainWindow::realtimeDataPlot_4(QCustomPlot *customPlot)
     customPlot->addGraph(); // red line
     customPlot->graph(1)->setPen(QPen(QColor(255, 110, 40)));
 
+    customPlot->xAxis->setLabel("时间(Time/s)");
+    customPlot->yAxis->setLabel("控制系统流量输出(%)");
+    //customPlot->legend->setVisible(true);
+
     QSharedPointer<QCPAxisTickerTime> timeTicker(new QCPAxisTickerTime);
-    timeTicker->setTimeFormat("%h:%m:%s");
+    timeTicker->setTimeFormat("%s");
     customPlot->xAxis->setTicker(timeTicker);
     customPlot->axisRect()->setupFullAxesBox();
     customPlot->yAxis->setRange(-1.2, 1.2);
@@ -262,6 +279,24 @@ void MainWindow::realtimeDataSlot_4()
             , 0);
       lastFpsKey = key;
       frameCount = 0;
+    }
+
+}
+
+void MainWindow::on_pushButton_28_clicked()
+{
+    if(ui->pushButton_28->text()=="暂停"){
+        dataTimer_1.stop();
+        dataTimer_2.stop();
+        dataTimer_3.stop();
+        dataTimer_4.stop();
+        ui->pushButton_28->setText("继续");
+    }else{
+        dataTimer_1.start();
+        dataTimer_2.start();
+        dataTimer_3.start();
+        dataTimer_4.start();
+        ui->pushButton_28->setText("暂停");
     }
 
 }

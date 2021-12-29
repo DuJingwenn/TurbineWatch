@@ -28,6 +28,8 @@ private slots:
     void realtimeDataSlot_4();
 
 
+    void on_pushButton_28_clicked();
+
 private:
     Ui::MainWindow *ui;
     QTimer dataTimer_1;
