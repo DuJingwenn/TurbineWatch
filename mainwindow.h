@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "qcustomplot.h"
+#include <QTimer>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,13 +15,24 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void plotDemo(QCustomPlot *customPlot);
-    void plotDemo2(QCustomPlot *customPlot);
+    void realtimeDataPlot_1(QCustomPlot *customPlot);
+    void realtimeDataPlot_2(QCustomPlot *customPlot);
+    void realtimeDataPlot_3(QCustomPlot *customPlot);
+    void realtimeDataPlot_4(QCustomPlot *customPlot);
     ~MainWindow();
 
 private slots:
+    void realtimeDataSlot_1();
+    void realtimeDataSlot_2();
+    void realtimeDataSlot_3();
+    void realtimeDataSlot_4();
+
 
 private:
     Ui::MainWindow *ui;
+    QTimer dataTimer_1;
+    QTimer dataTimer_2;
+    QTimer dataTimer_3;
+    QTimer dataTimer_4;
 };
 #endif // MAINWINDOW_H
