@@ -8,11 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    plotDemo(ui->dataPlot);
+    plotDemo(ui->plot_1);
+    plotDemo(ui->plot_2);
+    plotDemo(ui->plot_3);
+    plotDemo(ui->plot_4);
 }
 
 void MainWindow::plotDemo(QCustomPlot *customPlot)
 {
+
 
     QVector<double> x(101), y(101); // initialize with entries 0..100
     for (int i=0; i<101; ++i)
@@ -76,12 +80,5 @@ void MainWindow::plotDemo2(QCustomPlot *customPlot)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-    qDebug() << "按钮按下";
-    plotDemo2(ui->dataPlot);
 }
 
