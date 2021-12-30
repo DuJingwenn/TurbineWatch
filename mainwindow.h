@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "qcustomplot.h"
 #include <QTimer>
+#include <QSerialPort>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -15,26 +16,17 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void realtimeDataPlot_1(QCustomPlot *customPlot);
-    void realtimeDataPlot_2(QCustomPlot *customPlot);
-    void realtimeDataPlot_3(QCustomPlot *customPlot);
-    void realtimeDataPlot_4(QCustomPlot *customPlot);
+    void realtimeDataPlot(QCustomPlot *customPlot);
     ~MainWindow();
 
 private slots:
-    void realtimeDataSlot_1();
-    void realtimeDataSlot_2();
-    void realtimeDataSlot_3();
-    void realtimeDataSlot_4();
+    void realtimeDataSlot();
 
-
-    void on_pushButton_28_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QTimer dataTimer_1;
-    QTimer dataTimer_2;
-    QTimer dataTimer_3;
-    QTimer dataTimer_4;
+    QTimer plotDataTimer;
+    int yLowAxisRange = -10;
+    int yHighAxisRange = 10;
 };
 #endif // MAINWINDOW_H

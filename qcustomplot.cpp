@@ -8486,7 +8486,7 @@ void QCPAxis::setRange(double lower, double upper)
 void QCPAxis::setRange(double position, double size, Qt::AlignmentFlag alignment)
 {
   if (alignment == Qt::AlignLeft)
-    setRange(position, position+size);
+    setRange(0, position+size);
   else if (alignment == Qt::AlignRight)
     setRange(position-size, position);
   else // alignment == Qt::AlignCenter
